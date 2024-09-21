@@ -14,7 +14,7 @@
    </a>
 </p>
 
-**Using:** Php 7.4
+**Using:** Php 8.37
 
 **Features:**
 * **Customer Side (customerSide Folder):** Stores the website and allows customers to:
