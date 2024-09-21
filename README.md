@@ -45,12 +45,12 @@
 
 | Role | Email | Password |
 |---|---|---|
-| Customer | dadsvawvid@gmail.com | david4pass |
-| Customer | zoe@gmail.com | passworddef |
-| Customer | jackie@gmail.com | passwordstu |
-| Staff | 1 | password123 |
-| Staff | 10 | davidpa2ss |
-| Staff | 7 | robertpass |
+| Customer | mia.young@gmail.com | miapassword |
+| Customer | ella@king@gmail.com | ellapassword |
+| Customer | evelyn.sanchez@gmail.com | evelynpassword |
+| Staff | 1 | johnpassword |
+| Staff | 2 | susanpassword |
+| Staff | 4 | alicepassword |
 | Admin | 99999 | 12345 |
 
 ## Screenshots
@@ -78,6 +78,5 @@
 
 | Name | Github |
 |---|---|
-| Bryan | https://github.com/BryanTheLai |
-| Yong | https://github.com/ahhyang |
-| Kevin | https://github.com/kevin07212004 |
+| Patrick Mwangi | https://github.com/frashid17 |
+
