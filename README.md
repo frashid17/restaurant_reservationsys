@@ -1,6 +1,6 @@
 ## Restaurant POS and Website
 
-![alt text](https://github.com/frashid17/RestaurantProject/blob/main/RestaurantProjectImages/home.png?raw=true)
+![alt text](https://github.com/frashid17/restaurant_reservationsys/blob/main/RestaurantProjectImages/home.png)
 
 
 **Built with these:** 
