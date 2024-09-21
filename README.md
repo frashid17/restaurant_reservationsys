@@ -1,6 +1,7 @@
 ## Restaurant POS and Website
 
-![alt text](https://github.com/Brynlai/RestaurantProject/blob/main/RestaurantProjectImages/homehomepage.png?raw=true)
+![alt text](https://github.com/frashid17/RestaurantProject/blob/main/RestaurantProjectImages/home.png?raw=true)
+
 
 **Built with these:** 
 <p align="left">
