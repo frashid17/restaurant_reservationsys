@@ -1,51 +1,78 @@
-<?php
-// Check if setup has already been completed
-if (file_exists('setup_completed.flag')) {
-    echo "CLICK HOME TO START.";
-} else {
-    define('DB_HOST', 'localhost');
-    define('DB_USER', 'root');
-    define('DB_PASS', '');
-
-    // Create Connection
-    $link = new mysqli(DB_HOST, DB_USER, DB_PASS);
-
-    // Check Connection
-    if ($link->connect_error) {
-        die('Connection Failed: ' . $link->connect_error);
-    }
-
-    // Create the 'restaurantdb' database if it doesn't exist
-    $sqlCreateDB = "CREATE DATABASE IF NOT EXISTS restaurantdb";
-    if ($link->query($sqlCreateDB) === TRUE) {
-        echo "Database 'restaurantdb' created successfully.<br>";
-    } else {
-        echo "Error creating database: " . $link->error . "<br>";
-    }
-
-    // Switch to using the 'restaurantdb' database
-    $link->select_db('restaurantdb');
-
-    // Execute SQL statements from "restaurantdb.txt"
-    function executeSQLFromFile($filename, $link) {
-        $sql = file_get_contents($filename);
-
-        // Execute the SQL statements
-        if ($link->multi_query($sql) === TRUE) {
-            echo "SQL statements executed successfully.";
-            // Set the flag to indicate setup is complete
-            file_put_contents('setup_completed.flag', 'Setup completed successfully.');
-        } else {
-            echo "Error executing SQL statements: " . $link->error;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Setup</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
-    }
 
-    // Execute SQL statements from "restaurantdb.txt"
-    executeSQLFromFile('restaurantdb.txt', $link);
+        /* Center content */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #f7f7f7, #e6e6e6);
+            color: #333;
+        }
 
-    // Close the database connection
-    $link->close();
-}
-?>
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-<a href="customerSide/home/home.php">Proceed to System</a>
+        .container h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+        }
+
+        .button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <?php
+        // Check if setup has already been completed
+        if (file_exists(__DIR__ . '/setup_completed.flag')) {
+            echo "<h1>Setup Already Completed</h1>";
+            echo "<p>Click below to start using the system.</p>";
+        } else {
+            echo "<h1>Restaurant Setup</h1>";
+            echo "<p>The database has been created, and the setup process is almost complete.</p>";
+        }
+        ?>
+        <a href="customerSide/home/home.php" class="button">Proceed to System</a>
+    </div>
+</body>
+</html>
