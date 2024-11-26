@@ -449,17 +449,19 @@ mysqli_close($link);
         margin: 5px 0;
       }
       
-    .item-name {
-  display: inline-block; /* Ensure items are displayed on separate lines */
-  width: 100%; /* Adjust the width as needed */
-  float: left;
+.item-name {
+  display: grid;
+  width: 100%;
+  justify-items: start; /* Aligns the item to the left */
 }
 
+
 .item-price {
-  display: inline-block; /* Ensure prices are displayed on separate lines */
+  display: inline-flex; /* or flex, depending on the layout you want */
+  justify-content: flex-end; /* Align the price to the right */
   width: 30%; /* Adjust the width as needed */
-  float: right;
 }
+
 
 .user-profile {
     display: flex;
