@@ -11,7 +11,10 @@
 # 2. Create a secret in your repository named AZURE_WEBAPP_PUBLISH_PROFILE, paste the publish profile contents as the value of the secret.
 #    For instructions on obtaining the publish profile see: https://docs.microsoft.com/azure/app-service/deploy-github-actions#configure-the-github-secret
 #
-# 3. Change the value for the AZURE_WEBAPP_NAME. Optionally, change the AZURE_WEBAPP_PACKAGE_PATH and PHP_VERSION environment variables below.
+# 3. Create a secret in your repository named AZURE_CREDENTIALS for Azure Login.
+#    Follow https://github.com/Azure/login to set up a service principal and add the credentials.
+#
+# 4. Change the value for the AZURE_WEBAPP_NAME. Optionally, change the AZURE_WEBAPP_PACKAGE_PATH and PHP_VERSION environment variables below.
 #
 # For more information on GitHub Actions for Azure: https://github.com/Azure/Actions
 # For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
@@ -25,9 +28,9 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: bistro-breeze   # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  PHP_VERSION: '8.x'                  # set this to the PHP version to use
+  AZURE_WEBAPP_NAME: bistro-breeze   # Set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # Path to your web app project, defaults to the repository root
+  PHP_VERSION: '8.x'                  # PHP version to use
 
 permissions:
   contents: read
@@ -90,6 +93,11 @@ jobs:
         with:
           name: php-app
 
+      - name: Azure Login
+        uses: Azure/login@v2.2.0
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}  # Ensure this secret is set in GitHub repository
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -97,3 +105,4 @@ jobs:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: .
+
